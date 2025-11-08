@@ -1,5 +1,7 @@
 import express from "express";
-import { PORT } from "./config/env.js";
+import 'dotenv/config.js';
+import bookRoutes    from "./routers/BookRoutes.js";
+import studentRoutes from "./routers/StudentRoutes.js";
 
 /* CREATE EXPRESS APP */
 const app = express();
@@ -7,14 +9,13 @@ const app = express();
 /* MIDDLEWARE */
 app.use(express.json());
 
-app.get("/roi", async(request, response) => {
-    response.status(200).json({"Message" : "oh my god bruh."});
-});
-
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
     try {
-        console.log(`Server is running on port ${PORT}`);
+        console.log(`Server is running on port ${process.env.PORT}`);
     }catch(e) {
         console.log(e);
     }
 });
+
+app.use('/book'   ,    bookRoutes);
+app.use('/student', studentRoutes);
