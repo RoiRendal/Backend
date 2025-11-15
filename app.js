@@ -8,6 +8,10 @@ const app = express();
 
 /* MIDDLEWARE */
 app.use(express.json());
+app.use((req, res, next) => {
+    console.log(req.path, req.method);
+    next();
+});
 
 app.listen(process.env.PORT, () => {
     try {
