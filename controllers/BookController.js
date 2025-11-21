@@ -29,11 +29,13 @@ export const createBook = async (req, res) => {
 }
 
 export const editBook = async (req, res) => {
+    console.log('Request body:', req.body);
+
     const { bookId } = req.params;
-    const { title, genre, status } = req.body
+    const { title, genre, status } = req.body;
 
     try {
-        const updatedId= await BookModel.updateBook(title, genre, status, bookId);
+        const updatedId = await BookModel.updateBook(title, genre, status, bookId);
         res.status(200).json({success: true, message: `Book updated with ID: ${updatedId}`});
     } catch(e) {
         console.log(e);
