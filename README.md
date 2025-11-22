@@ -6,9 +6,9 @@ npm install mysql2 dotenv
 ``
 ###### Then:
 ``
-npm run dev
+npm install validator bcryptjs jsonwebtoken
 ``
 ###### Then:
 ``
-npm install validator bcryptjs jsonwebtoken
+npm run dev
 ``
