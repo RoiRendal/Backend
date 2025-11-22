@@ -7,7 +7,7 @@ export const register = async (req, res) => {
         const user = await UserModel.createUser(name, email, password);
         res.status(201).json({
             success: true,
-            message: [{result: "Account created successfully!"}]
+            message: [{user}, {result: "Account created successfully!"}]
         });
     } catch(e) {
         console.error(e);
