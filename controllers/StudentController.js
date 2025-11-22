@@ -11,7 +11,7 @@ export const fetchStudent = async (req, res) => {
             message: "Internal Server Error"
         })
     }
-}
+};
 
 export const createStudent = async (req, res) => {
     const { name, srcode, course } = req.body;
@@ -26,7 +26,7 @@ export const createStudent = async (req, res) => {
             message: "Internal Server Error"
         });
     }
-}
+};
 
 export const editStudent = async (req, res) => {
     console.log('Request body:', req.body);
@@ -41,7 +41,7 @@ export const editStudent = async (req, res) => {
         console.error(e);
         res.status(500).json({success: false, message: "Internal Server Error"});
     }
-}
+};
 
 export const deleteStudent = async (req, res) => {
     const { studentId } = req.params;
@@ -53,4 +53,4 @@ export const deleteStudent = async (req, res) => {
         console.error(e);
         res.status(500).json({success: false, message: "Internal Server Error"});
     }
-}
+};

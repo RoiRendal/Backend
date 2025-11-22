@@ -3,6 +3,7 @@ import cors from 'cors';
 import 'dotenv/config.js';
 import bookRoutes    from "./routers/BookRoutes.js";
 import studentRoutes from "./routers/StudentRoutes.js";
+import userRoutes    from "./routers/UserRoutes.js";
 
 /* CREATE EXPRESS APP */
 const app = express();

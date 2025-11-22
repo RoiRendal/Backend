@@ -16,4 +16,4 @@ export const register = async (req, res) => {
             message: "Internal Server Error"
         });
     }
-}
+};

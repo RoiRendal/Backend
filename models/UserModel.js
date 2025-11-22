@@ -1,4 +1,4 @@
-import pool from "../config/db.js";
+import pool from '../config/db.js';
 import validator from "validator";
 import bcrypt from "bcryptjs";
 

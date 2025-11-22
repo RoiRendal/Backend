@@ -11,7 +11,7 @@ export const fetchBooks = async (req, res) => {
             message: "Internal Server Error"
         })
     }
-}
+};
 
 export const createBook = async (req, res) => {
     const { title, genre, status } = req.body;
@@ -26,7 +26,7 @@ export const createBook = async (req, res) => {
             message: "Internal Server Error"
         });
     }
-}
+};
 
 export const editBook = async (req, res) => {
     console.log('Request body:', req.body);
@@ -41,7 +41,7 @@ export const editBook = async (req, res) => {
         console.error(e);
         res.status(500).json({success: false, message: "Internal Server Error"});
     }
-}
+};
 
 export const deleteBook = async (req, res) => {
     const { bookId } = req.params;
@@ -53,4 +53,4 @@ export const deleteBook = async (req, res) => {
         console.error(e);
         res.status(500).json({success: false, message: "Internal Server Error"});
     }
-}
+};
