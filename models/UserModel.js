@@ -28,7 +28,7 @@ export const createUser = async (name, email, password) => {
     }
 
     const [user] = await pool.query (
-        "SELECT email FROM user WHERE email = ?", [email]
+        "SELECT email FROM tbluser WHERE email = ?", [email]
         );
 
     if(user.length === 1) {
@@ -41,7 +41,7 @@ export const createUser = async (name, email, password) => {
     const hashedPassword = bcrypt.hashSync(password, salt);
 
     const [newUser] = await pool.query (
-        "INSERT INTO user (name, email, password) VALUES (?, ?, ?)",
+        "INSERT INTO tbluser (name, email, password) VALUES (?, ?, ?)",
         [name, email, hashedPassword]
     );
 
@@ -51,7 +51,7 @@ export const createUser = async (name, email, password) => {
 
 
 export const login = async (email, password) => {
-    if(email.trim() ==='' ||
+    if(email.trim() === '' ||
        password.trim() === '') {
         const error = new Error ('Email and Password are required.');
         error.statusCode = 400;
@@ -59,11 +59,17 @@ export const login = async (email, password) => {
     }
 
     const [user] = await pool.query (
-        "SELECT * FROM user WHERE email = ?", [email]
+        "SELECT * FROM tbluser WHERE email = ?", [email]
     );
 
     if(user.length === 0) {
         const error = new Error (`An account with email ${email} does not exist.`);
+        error.statusCode = 400;
+        throw error;
+    }
+
+    if(!bcrypt.compareSync(password, user[0].password)) {
+        const error = new Error ('Incorrect password.');
         error.statusCode = 400;
         throw error;
     }
