@@ -15,10 +15,10 @@ let corsOptions = {
 
 app.use(express.json());
 app.use(cors(corsOptions));
-app.use((req, res, next) => {
+/* app.use((req, res, next) => {
     console.log(req.path, req.method);
     next();
-});
+}); */
 
 app.use('/book'   ,    bookRoutes);
 app.use('/student', studentRoutes);
