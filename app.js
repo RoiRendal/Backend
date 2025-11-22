@@ -21,6 +21,7 @@ app.use((req, res, next) => {
 
 app.use('/book'   ,    bookRoutes);
 app.use('/student', studentRoutes);
+app.use('/user'   ,    userRoutes);
 
 app.listen(process.env.PORT, () => {
     try {
