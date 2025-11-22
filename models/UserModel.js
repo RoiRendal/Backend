@@ -1,6 +1,6 @@
 import pool from "..config/db";
 import validator from "validator";
-import
+/* import */
 
 
     if(!validator.isStrongPassword(password)) {
@@ -16,8 +16,15 @@ import
         );
 
     if(user.length === 1) {
-        const error = new Error(`The ${email} email is already in use.`);
+        const error = new Error (`The ${email} email is already in use.`);
         error.statusCode = 409;
         throw error;
     }
 
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = bcrypt.hashSync(password, salt);
+
+    const [newUser] = await pool.query (
+        "INSERT INTO user (name, email, password) VALUES (?, ?, ?)",
+        [name, email, hashedPassword]
+    );
