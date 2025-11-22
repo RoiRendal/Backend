@@ -1,6 +1,7 @@
 import pool from '../config/db.js';
 import validator from "validator";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 export const createUser = async (name, email, password) => {
     if(name.trim() ==='' ||
@@ -73,4 +74,12 @@ export const login = async (email, password) => {
         error.statusCode = 400;
         throw error;
     }
+
+    const token = jwt.sign (
+        { id: user[0].id, email: user[0].email },
+        process.env.JWT_SECRET,
+        { expiresIn: '1d' }
+    );
+
+    return token;
 };
