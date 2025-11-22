@@ -28,3 +28,5 @@ import validator from "validator";
         "INSERT INTO user (name, email, password) VALUES (?, ?, ?)",
         [name, email, hashedPassword]
     );
+
+    return newUser;
