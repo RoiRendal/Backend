@@ -1,7 +1,23 @@
-import pool from "..config/db";
+import pool from "../config/db.js";
 import validator from "validator";
-/* import */
+import bcrypt from "bcryptjs";
 
+export const createUser = async (name, email, password) => {
+    if(name.trim() ==='' ||
+       email.trim() ==='' ||
+       password.trim() === '') {
+        const error = new TypeError (
+            'Name, Email and Password are required.'
+        );
+        error.statusCode = 400;
+        throw error;
+    }
+
+    if(!validator.isEmail(email)) {
+        const error = new TypeError ('Invalid email address.');
+        error.statusCode = 400;
+        throw error;
+    }
 
     if(!validator.isStrongPassword(password)) {
         const error = new TypeError (
@@ -17,7 +33,7 @@ import validator from "validator";
 
     if(user.length === 1) {
         const error = new Error (`The ${email} email is already in use.`);
-        error.statusCode = 409;
+        error.statusCode = 400;
         throw error;
     }
 
@@ -30,3 +46,4 @@ import validator from "validator";
     );
 
     return newUser;
+};
