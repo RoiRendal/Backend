@@ -3,13 +3,13 @@ import * as BookModel from "../models/BookModel.js";
 export const fetchBooks = async (req, res) => {
     try {
         const books = await BookModel.getBooks();
-        res.status(200).json({success: true, message: books})
+        res.status(200).json({success: true, message: books});
     } catch(e) {
         console.error(e);
         res.status(500).json({
             success: false,
-            message: "Internal Server Error"
-        })
+            message: 'Internal Server Error'
+        });
     }
 };
 
@@ -23,7 +23,7 @@ export const createBook = async (req, res) => {
         console.error(e);
         res.status(500).json({
             success: false,
-            message: "Internal Server Error"
+            message: 'Internal Server Error'
         });
     }
 };
@@ -39,7 +39,7 @@ export const editBook = async (req, res) => {
         res.status(200).json({success: true, message: `Book updated with ID: ${updatedId}`});
     } catch(e) {
         console.error(e);
-        res.status(500).json({success: false, message: "Internal Server Error"});
+        res.status(500).json({success: false, message: 'Internal Server Error'});
     }
 };
 
@@ -51,6 +51,6 @@ export const deleteBook = async (req, res) => {
         res.status(200).json({success: true, message: `Book deleted with ID: ${deletedId}`});
     } catch(e) {
         console.error(e);
-        res.status(500).json({success: false, message: "Internal Server Error"});
+        res.status(500).json({success: false, message: 'Internal Server Error'});
     }
 };

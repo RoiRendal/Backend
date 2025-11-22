@@ -3,13 +3,13 @@ import * as StudentModel from "../models/StudentModel.js";
 export const fetchStudent = async (req, res) => {
     try {
         const student = await StudentModel.getStudents();
-        res.status(200).json({success: true, message: student})
+        res.status(200).json({success: true, message: student});
     } catch(e) {
         console.error(e);
         res.status(500).json({
             success: false,
-            message: "Internal Server Error"
-        })
+            message: 'Internal Server Error'
+        });
     }
 };
 
@@ -23,7 +23,7 @@ export const createStudent = async (req, res) => {
         console.error(e);
         res.status(500).json({
             success: false,
-            message: "Internal Server Error"
+            message: 'Internal Server Error'
         });
     }
 };
@@ -39,7 +39,7 @@ export const editStudent = async (req, res) => {
         res.status(200).json({success: true, message: `Student updated with ID: ${updatedId}`});
     } catch(e) {
         console.error(e);
-        res.status(500).json({success: false, message: "Internal Server Error"});
+        res.status(500).json({success: false, message: 'Internal Server Error'});
     }
 };
 
@@ -51,6 +51,6 @@ export const deleteStudent = async (req, res) => {
         res.status(200).json({success: true, message: `Student deleted with ID: ${deletedId}`});
     } catch(e) {
         console.error(e);
-        res.status(500).json({success: false, message: "Internal Server Error"});
+        res.status(500).json({success: false, message: 'Internal Server Error'});
     }
 };

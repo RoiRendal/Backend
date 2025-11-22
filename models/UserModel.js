@@ -33,7 +33,7 @@ export const createUser = async (name, email, password) => {
         );
 
     if(user.length === 1) {
-        const error = new Error (`The ${email} email is already in use.`);
+        const error = new Error (`The "${email}" email is already in use.`);
         error.statusCode = 400;
         throw error;
     }
@@ -64,7 +64,7 @@ export const login = async (email, password) => {
     );
 
     if(user.length === 0) {
-        const error = new Error (`An account with email ${email} does not exist.`);
+        const error = new Error (`An account with email "${email}" does not exist.`);
         error.statusCode = 400;
         throw error;
     }
@@ -82,4 +82,15 @@ export const login = async (email, password) => {
     );
 
     return token;
+};
+
+export const getUser = async (id) => {
+    if(parseInt(id) === NaN) {
+        throw new Error('Invalid user ID.');
+    }
+
+    const [user] = await pool.query (
+        "SELECT * FROM tbluser WHERE id = ?", [id]
+    );
+    return user;
 };
